@@ -3,6 +3,7 @@ import { Logo, Button, Input } from '@components/ui'
 import useLogin from '@framework/auth/use-login'
 import { useUI } from '@components/ui/context'
 import { validate } from 'email-validator'
+import { useRouter } from 'next/router'
 
 const LoginView: React.FC = () => {
   // Form State
@@ -13,6 +14,7 @@ const LoginView: React.FC = () => {
   const [dirty, setDirty] = useState(false)
   const [disabled, setDisabled] = useState(false)
   const { setModalView, closeModal } = useUI()
+  const router = useRouter()
 
   const login = useLogin()
 
@@ -32,6 +34,7 @@ const LoginView: React.FC = () => {
         password,
       })
       setLoading(false)
+      router.push('/profile')
       closeModal()
     } catch (e: any) {
       setMessage(e.errors[0].message)
@@ -43,7 +46,6 @@ const LoginView: React.FC = () => {
   const handleValidation = useCallback(() => {
     // Test for Alphanumeric password
     const validPassword = /^(?=.*[a-zA-Z])(?=.*[0-9])/.test(password)
-
     // Unable to send form unless fields are valid.
     if (dirty) {
       setDisabled(!validate(email) || password.length < 7 || !validPassword)

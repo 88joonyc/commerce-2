@@ -22,9 +22,10 @@ export async function getStaticProps({
 
 export default function Profile() {
   const { data } = useCustomer()
+  console.log('----------', data)
   return (
     <Container className="pt-4">
-      <Text variant="pageHeading">My Profile</Text>
+      <Text variant="pageHeading">My Profile{data}</Text>
       <div className="grid grid-cols-4">
         {data && (
           <div className="flex flex-col divide-accent-2 divide-y">

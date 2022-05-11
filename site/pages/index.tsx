@@ -5,6 +5,7 @@ import { Grid, Marquee, Hero } from '@components/ui'
 // import HomeAllProductsGrid from '@components/common/HomeAllProductsGrid'
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 
+// this tells the page to fetch the props to render, usually used for headless CMS
 export async function getStaticProps({
   preview,
   locale,
